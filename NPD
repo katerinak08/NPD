@@ -1,0 +1,39 @@
+def main():
+    total_sum = 0.0  # Kopējā summa sākumā ir 0
+    items = []  # Saraksts, lai glabātu informāciju par precēm
+
+    while True:
+        try:
+            item_name = input("Ievadiet preces nosaukumu (vai '0', lai beigtu): ")
+            if item_name == '0':
+                break
+
+            price = float(input(f"Ievadiet cenu precei '{item_name}': "))
+            if price < 0:
+                print("Cena nevar būt negatīva! Mēģiniet vēlreiz.")
+                continue
+
+            quantity = int(input(f"Ievadiet daudzumu precei '{item_name}': "))
+            if quantity < 0:
+                print("Daudzums nevar būt negatīvs! Mēģiniet vēlreiz.")
+                continue
+
+            item_total = price * quantity
+            total_sum += item_total
+            items.append((item_name, price, quantity, item_total))
+
+            print(f"Preču kopējā summa: {item_total:.2f} €")
+        
+        except ValueError:
+            print("Lūdzu ievadiet derīgu skaitli!")
+
+    print("\nKopsavilkums par pirkumiem:")
+    for i, item in enumerate(items, start=1):
+        name, price, quantity, item_total = item
+        print(f"{i}. {name}: {price:.2f} € x {quantity} = {item_total:.2f} €")
+
+    print(f"\nKopējā summa: {total_sum:.2f} €")
+
+
+if __name__ == "__main__":
+    main()
